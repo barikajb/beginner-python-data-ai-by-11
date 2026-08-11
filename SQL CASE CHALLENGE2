@@ -1,0 +1,104 @@
+-- TASK 11.1 
+SELECT 
+CustomerID,
+CustomerName,
+	CASE
+		WHEN CustomerID = 101 OR CustomerID = 102 THEN 'GROUP A'
+        WHEN CustomerID = 103 OR CustomerID = 104 THEN 'GROUP B'
+        WHEN CustomerID = 105 OR CustomerID = 106 THEN 'GROUP C'
+    END AS CustomerStatus
+FROM Customer;
+-- TASK 11.2 
+SELECT 
+CustomerID,
+CustomerName,
+	CASE
+		WHEN CustomerID < 103 THEN 'LOW ID'
+        WHEN CustomerID IN (103, 104) THEN 'MIDDLE ID'
+        WHEN CustomerID >= 105 THEN 'HIGH ID'
+    END AS CustomerStatus
+FROM Customer;
+
+-- TASK 12.1
+SELECT 
+OrderID,
+TotalAmount,
+	CASE
+		WHEN TotalAmount < 200 THEN 'BASIC'
+        WHEN TotalAmount >= 200 AND TotalAmount <= 300 THEN 'STANDARD'
+        WHEN TotalAmount > 300 THEN 'PREMIUM'
+    END AS OrderLevel
+FROM Orders;
+-- TASK 12.2
+SELECT 
+OrderID,
+TotalAmount,
+	CASE
+		WHEN TotalAmount <= 150 THEN 'LOW'
+        WHEN TotalAmount >= 150.01 AND TotalAmount <= 250 THEN 'MEDIUM'
+        WHEN TotalAmount > 250 THEN 'HIGH'
+    END AS OrderLevel
+FROM Orders;
+
+-- TASK 13.1
+SELECT 
+CustomerName,
+CASE
+	WHEN CustomerName LIKE 'J%' THEN 'J NAME'
+    WHEN CustomerName LIKE 'S%' THEN 'S NAME'
+    ELSE 'OTHER'
+END AS NameCategory
+FROM Customer;
+-- TASK 13.2
+SELECT 
+CustomerName,
+CASE
+	WHEN CustomerName LIKE 'J%' THEN 'J NAME'
+    WHEN CustomerName LIKE 'S%' THEN 'S NAME'
+    ELSE 'OTHER'
+END AS NameCategory
+FROM Customer;
+-- TASK 14.1
+SELECT 
+OrderID,
+OrderDate,
+CASE
+	WHEN OrderDate LIKE '2026-08-01' THEN 'DAY 1'
+    WHEN OrderDate >= '2026-08-02' AND OrderDate <= '2026-08-03' THEN 'DAY 2-3'
+    WHEN OrderDate >= '2026-08-04' AND OrderDate <= '2026-08-05' THEN 'DAY 4-5'
+    WHEN OrderDate >= '2026-08-06' THEN 'DAY 6+'
+END AS DateCategory
+FROM orders;
+-- TASK 14.2
+SELECT 
+OrderID,
+OrderDate,
+CASE
+	WHEN OrderDate < '2026-08-03' THEN 'Early'
+	WHEN OrderDate >= '2026-08-03' AND OrderDate <= '2026-08-05' THEN 'On Schedule'
+    WHEN OrderDate > '2026-08-05' THEN 'Late'
+END AS DateCategory
+FROM orders;
+
+-- TASK 15.1
+SELECT 
+OrderID,
+TotalAmount,
+CASE
+	WHEN TotalAmount >= 350 THEN 'Urgent'
+	WHEN TotalAmount >= 250 AND TotalAmount <= 349.99 THEN 'Important'
+    WHEN TotalAmount >= 200 AND TotalAmount <= 249.99 THEN 'Normal'
+    WHEN TotalAmount < 200 THEN 'Low'
+END AS Priority
+FROM orders;
+-- TASK 15.2
+SELECT 
+OrderID,
+TotalAmount,
+CASE
+	WHEN TotalAmount >= 400 THEN 'VIP'
+	WHEN TotalAmount >= 300 AND TotalAmount <= 399.99 THEN 'GOLD'
+    WHEN TotalAmount >= 200 AND TotalAmount <= 299.99 THEN 'SILVER'
+    WHEN TotalAmount < 200 THEN 'BRONZE'
+END AS CustomerLevel
+FROM orders;
