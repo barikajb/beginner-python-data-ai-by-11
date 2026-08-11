@@ -1,1 +1,1 @@
-# beginner-python-data-ai-by-11
+# beginner-data-ai-by-11
