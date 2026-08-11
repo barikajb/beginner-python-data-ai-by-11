@@ -1,0 +1,218 @@
+-- TASK 1.1
+SELECT
+    CustomerName,
+    City,
+    CASE
+        WHEN City = 'Dallas' THEN 'North Texas'
+        WHEN City = 'Houston' THEN 'Southeast Texas'
+        WHEN City = 'Austin' THEN 'Central Texas'
+        WHEN City = 'Chicago' THEN 'Illinois'
+        WHEN City = 'Phoenix' THEN 'Arizona'
+        ELSE 'Other'
+    END AS CityType
+FROM Customer;
+-- TASK 1.2
+SELECT
+    CustomerName,
+    City,
+    CASE
+        WHEN City = 'Dallas' THEN 'Group A'
+        WHEN City = 'Houston' THEN 'Group B'
+        WHEN City = 'Austin' THEN 'Group C'
+        WHEN City = 'Chicago' THEN 'Group D'
+        WHEN City = 'Phoenix' THEN 'Group E'
+        ELSE 'Other'
+    END AS CityType
+FROM Customer;
+
+-- TASK 2.1 
+SELECT
+    OrderID,
+    TotalAmount,
+    CASE
+        WHEN TotalAmount >= 300 THEN 'LARGE'
+        WHEN TotalAmount <= 300 THEN 'REGULAR'
+    END AS OrderCategory
+FROM Orders;
+-- TASK 2.2 
+SELECT
+    OrderID,
+    TotalAmount,
+    CASE
+        WHEN TotalAmount >= 400 THEN 'PREMIUM'
+        WHEN TotalAmount > 200  THEN 'STANDARD'
+        WHEN TotalAmount <= 200 THEN 'BASIC'
+    END AS OrderCategory
+FROM Orders;
+
+-- TASK 3.1
+SELECT
+    OrderID,
+    TotalAmount,
+    CASE
+        WHEN TotalAmount >= 350 THEN '10%'
+        WHEN TotalAmount >= 200 THEN '5%'
+        WHEN TotalAmount < 200 THEN 'NO DISCOUNT'
+    END AS DiscountLevel
+FROM Orders;
+-- TASK 3.2
+SELECT
+    OrderID,
+    TotalAmount,
+    CASE
+        WHEN TotalAmount >= 400 THEN 'VIP DISCOUNT'
+        WHEN TotalAmount >= 300 THEN 'GOLD DISCOUNT'
+        WHEN TotalAmount >= 200 THEN 'SILVER DISCOUNT'
+        WHEN TotalAmount < 200 THEN 'NO DISCOUNT'
+    END AS DiscountLevel
+FROM Orders;
+
+-- TASK 4.1
+SELECT
+    CustomerName,
+    City,
+    CASE
+        WHEN City IN ('Dallas', 'Houston', 'Austin')
+            THEN 'Texas Customer'
+		WHEN City IN ('Chicago', 'Phoenix')
+            THEN 'Outside Texas'
+    END AS LocationStatus
+FROM Customer;
+-- TASK 4.2
+SELECT
+    CustomerName,
+    City,
+    CASE
+        WHEN City IN ('Dallas', 'Houston')
+            THEN 'North/South Texas'
+		WHEN City IN ('Austin')
+            THEN 'Central Texas'
+		WHEN City IN ('Chicago', 'Phoenix')
+            THEN 'Other State'
+    END AS LocationStatus
+FROM Customer;
+
+-- task 5.1
+SELECT
+    CustomerName,
+    CASE
+        WHEN CustomerName LIKE 'J%' THEN 'J Customer'
+        WHEN CustomerName LIKE 'M%' THEN 'M Customer'
+        ELSE 'Other'
+    END AS CustomerCategory
+FROM Customer;
+-- task 5.2
+SELECT
+    CustomerName,
+    CASE
+        WHEN CustomerName LIKE '%n' THEN 'Ends N'
+        ELSE 'Does Not End N'
+    END AS CustomerCategory
+FROM Customer;
+
+-- TASK 6.1
+SELECT
+    OrderID,
+    OrderDate,
+    CASE
+        WHEN OrderDate >= '2026-08-01' THEN 'FRIST PERIOD'
+        WHEN OrderDate <= '2026-08-03' THEN 'FRIST PERIOD'
+        WHEN OrderDate >= '2026-08-04' THEN 'SECOND PERIOD'
+        WHEN OrderDate <= '2026-08-04' THEN 'SECOND PERIOD'
+    END AS OrderTiming
+FROM Orders;
+-- TASK 6.2
+SELECT
+    OrderID,
+    OrderDate,
+    CASE
+        WHEN OrderDate < '2026-08-05' THEN 'BEFORE CUTOFF'
+        WHEN OrderDate >= '2026-08-05' THEN 'AFTER CUTOFF'
+    END AS OrderTiming
+FROM Orders;
+
+-- TASK 7.1
+SELECT
+    OrderID,
+    TotalAmount,
+    CASE
+        WHEN TotalAmount < 200 THEN 'BASIC'
+        WHEN TotalAmount >= 200 THEN 'STANDARD'
+        WHEN TotalAmount <= 350 THEN 'STANDARD'
+        WHEN TotalAmount > 350 THEN 'PREMIUM'
+    END AS OrderSize
+FROM Orders;
+-- TASK 7.2
+SELECT
+    OrderID,
+    TotalAmount,
+    CASE
+        WHEN TotalAmount <= 150 THEN 'LOW'
+        WHEN TotalAmount > 150 THEN 'MEDIUM'
+        WHEN TotalAmount > 300 THEN 'HIGH'
+    END AS OrderSize
+FROM Orders;
+
+-- TASK 8.1
+SELECT
+    CustomerID,
+    CustomerName,
+    CASE
+        WHEN CustomerID = 101 THEN 'FIRST'
+        WHEN CustomerID = 102 THEN 'SECOND'
+        WHEN CustomerID = 103 THEN 'THIRD'
+        WHEN CustomerID = 104 THEN 'FOURTH'
+        WHEN CustomerID = 105 THEN 'FIFTH'
+    END AS CustomerGroup
+FROM Customer;
+-- TASK 8.2
+SELECT
+    CustomerID,
+    CustomerName,
+    CASE
+        WHEN CustomerID < 103 THEN 'LOWER ID'
+        WHEN CustomerID >= 103 THEN 'HIGHER ID'
+    END AS CustomerGroup
+FROM Customer;
+
+-- TASK 9.1
+SELECT
+    OrderID,
+    CASE
+        WHEN OrderID = 1001 THEN 'BATCH 1'
+        WHEN OrderID = 1002 THEN 'BATCH 1'
+        WHEN OrderID = 1003 THEN 'BATCH 2'
+        WHEN OrderID = 1004 THEN 'BATCH 2'
+        WHEN OrderID = 1005 THEN 'BATCH 3'
+    END AS OrderPosition
+FROM Orders;
+-- TASK 9.2
+SELECT
+    OrderID,
+    CASE
+        WHEN OrderID < 1003 THEN 'OLD'
+        WHEN OrderID >= 1003 THEN 'NEW'
+    END AS OrderPosition
+FROM Orders;
+
+-- TASK 10.0
+SELECT
+    OrderID,
+    TotalAmount,
+    CASE
+        WHEN TotalAmount >= 350 THEN 'Manager'
+        WHEN TotalAmount >= 250 THEN 'Supervisor'
+        WHEN TotalAmount < 250 THEN 'Employee'
+    END AS ReviewStatus
+FROM Orders;
+-- TASK 10.2
+SELECT
+    OrderID,
+    TotalAmount,
+    CASE
+        WHEN TotalAmount >= 400 THEN 'Critical'
+        WHEN TotalAmount >= 300 THEN 'Important'
+        WHEN TotalAmount >= 200 THEN 'Important'
+        WHEN TotalAmount < 200 THEN 'Low'
+    END AS ReviewStatus
+FROM Orders;
