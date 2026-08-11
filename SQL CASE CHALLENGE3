@@ -1,0 +1,33 @@
+-- CHALLENGE 1
+SELECT 
+COUNT(*) AS TotalOrders,
+SUM(TotalAmount) AS TotalSales
+FROM Orders;
+
+-- CHALLENGE 2 
+SELECT 
+COUNT(*) AS HighValueOrders
+FROM Orders
+WHERE TotalAmount > 250;
+
+-- CHALLENGE 3
+SELECT AVG(TotalAmount) AS AverageOrder
+FROM Orders
+WHERE TotalAmount < 350;
+
+-- CHALLENGE 4
+SELECT
+COUNT(*) AS TotalOrders,
+SUM(TotalAmount) AS TotalSales,
+ROUND(AVG(TotalAmount),2) AS AverageOrder
+FROM Orders
+WHERE ROUND(TotalAmount,2) >= 200;
+
+-- CHALLENGE 5
+SELECT 
+COUNT(*) AS TotalOrders,
+ROUND(SUM(TotalAmount),2) AS 'Total Sales',
+ROUND(AVG(TotalAmount),2) AS 'Average Order',
+MIN(TotalAmount) AS 'Min Order',
+MAX(TotalAmount) AS 'Max Order'
+FROM Orders;
