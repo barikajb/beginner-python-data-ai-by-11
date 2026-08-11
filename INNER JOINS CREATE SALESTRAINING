@@ -1,0 +1,75 @@
+-- =========================================================
+-- Create Database
+-- =========================================================
+
+CREATE DATABASE IF NOT EXISTS SalesTraining;
+
+USE SalesTraining;
+
+
+-- =========================================================
+-- Customer Table
+-- =========================================================
+
+CREATE TABLE Customer (
+    CustomerID INT PRIMARY KEY,
+    CustomerName VARCHAR(100) NOT NULL,
+    City VARCHAR(50),
+    State VARCHAR(50)
+);
+
+
+-- =========================================================
+-- Orders Table
+-- =========================================================
+
+CREATE TABLE Orders (
+    OrderID INT PRIMARY KEY,
+    CustomerID INT,
+    OrderDate DATE,
+    TotalAmount DECIMAL(10,2),
+
+    CONSTRAINT FK_Customer
+        FOREIGN KEY (CustomerID)
+        REFERENCES Customer(CustomerID)
+);
+
+
+-- =========================================================
+-- Insert Customers
+-- =========================================================
+
+INSERT INTO Customer
+(CustomerID, CustomerName, City, State)
+VALUES
+(101, 'John Smith',       'Dallas',   'Texas'),
+(102, 'Mary Johnson',     'Houston',  'Texas'),
+(103, 'David Brown',      'Austin',   'Texas'),
+(104, 'Sarah Wilson',     'Chicago',  'Illinois'),
+(105, 'James Miller',     'Phoenix',  'Arizona'),
+(106, 'Linda Davis',      'Dallas',   'Texas'),
+(107, 'Robert Moore',     'Houston',  'Texas'),
+(108, 'Patricia Taylor',  'Miami',    'Florida'),
+(109, 'Michael Anderson', 'Dallas',   'Texas'),
+(110, 'Barbara Thomas',   'Denver',   'Colorado');
+
+
+-- =========================================================
+-- Insert Orders
+-- =========================================================
+
+INSERT INTO Orders
+(OrderID, CustomerID, OrderDate, TotalAmount)
+VALUES
+(1001, 101, '2026-08-01', 250.50),
+(1002, 102, '2026-08-02', 180.00),
+(1003, 103, '2026-08-03', 325.75),
+(1004, 101, '2026-08-05', 150.25),
+(1005, 105, '2026-08-06', 420.00),
+(1006, 106, '2026-08-07', 95.50),
+(1007, 102, '2026-08-08', 275.00),
+(1008, 107, '2026-08-09', 510.25),
+(1009, 101, '2026-08-10', 125.00),
+(1010, 109, '2026-08-10', 350.00),
+(1011, 103, '2026-08-11', 200.00),
+(1012, 105, '2026-08-11', 175.50);
