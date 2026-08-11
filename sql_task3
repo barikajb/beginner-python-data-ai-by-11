@@ -1,0 +1,257 @@
+-- Task 1 — Count Customers
+ 
+-- Exercise 1 — Count all customers
+SELECT COUNT(*) AS TotalCustomers
+FROM Customer;
+ 
+-- Exercise 2 — Count customers with CustomerID greater than 102
+SELECT COUNT(*) AS TotalCustomers
+FROM Customer
+WHERE CustomerID > 102;
+ 
+-- Task 2 — Count Orders
+ 
+-- Exercise 1 — Count all orders
+SELECT COUNT(*) AS TotalOrders
+FROM Orders;
+ 
+-- Exercise 2 — Count orders greater than $300
+SELECT COUNT(*) AS LargeOrders
+FROM Orders
+WHERE TotalAmount > 300;
+ 
+-- Task 3 — Total Order Amount
+ 
+-- Exercise 1 — Calculate total sales
+SELECT SUM(TotalAmount) AS TotalSales
+FROM Orders;
+ 
+-- Exercise 2 — Calculate sales for orders of $300 or more
+SELECT SUM(TotalAmount) AS TotalSales
+FROM Orders
+WHERE TotalAmount >= 300;
+ 
+-- Task 4 — Average Order Amount
+ 
+-- Exercise 1 — Calculate average order amount
+SELECT AVG(TotalAmount) AS AverageOrder
+FROM Orders;
+ 
+-- Exercise 2 — Calculate average for orders greater than $200
+SELECT AVG(TotalAmount) AS AverageOrder
+FROM Orders
+WHERE TotalAmount > 200;
+ 
+-- Task 5 — Minimum Order Amount
+ 
+-- Exercise 1 — Find the smallest order
+SELECT MIN(TotalAmount) AS MinimumOrder
+FROM Orders;
+ 
+-- Exercise 2 — Find the smallest order greater than $200
+SELECT MIN(TotalAmount) AS MinimumOrder
+FROM Orders
+WHERE TotalAmount > 200;
+ 
+-- Task 6 — Maximum Order Amount
+ 
+-- Exercise 1 — Find the largest order
+SELECT MAX(TotalAmount) AS MaximumOrder
+FROM Orders;
+ 
+-- Exercise 2 — Find the largest order below $400
+SELECT MAX(TotalAmount) AS MaximumOrder
+FROM Orders
+WHERE TotalAmount < 400;
+ 
+-- Task 7 — Multiple Aggregate Functions
+ 
+-- Exercise 1 — Count, total, and average
+SELECT
+    COUNT(*) AS TotalOrders,
+    SUM(TotalAmount) AS TotalSales,
+    AVG(TotalAmount) AS AverageOrder
+FROM Orders;
+ 
+-- Exercise 2 — Minimum, maximum, and average
+SELECT
+    MIN(TotalAmount) AS MinimumOrder,
+    MAX(TotalAmount) AS MaximumOrder,
+    AVG(TotalAmount) AS AverageOrder
+FROM Orders;
+ 
+-- Task 8 — Aggregate with WHERE
+ 
+-- Exercise 1 — Total sales for orders of $250 or more
+SELECT SUM(TotalAmount) AS TotalSales
+FROM Orders
+WHERE TotalAmount >= 250;
+ 
+-- Exercise 2 — Average for orders below $300
+SELECT AVG(TotalAmount) AS AverageOrder
+FROM Orders
+WHERE TotalAmount < 300;
+ 
+-- Task 9 — Customer ID Aggregates
+ 
+-- Exercise 1 — Smallest CustomerID
+SELECT MIN(CustomerID) AS MinimumCustomerID
+FROM Customer;
+ 
+-- Exercise 2 — Largest CustomerID
+SELECT MAX(CustomerID) AS MaximumCustomerID
+FROM Customer;
+ 
+-- Task 10 — Business Sales Summary
+ 
+-- Exercise 1 — Complete sales summary
+SELECT
+    COUNT(*) AS TotalOrders,
+    SUM(TotalAmount) AS TotalSales,
+    MIN(TotalAmount) AS MinimumOrder,
+    MAX(TotalAmount) AS MaximumOrder,
+    AVG(TotalAmount) AS AverageOrder
+FROM Orders;
+ 
+-- Exercise 2 — Summary for orders of $200 or more
+SELECT
+    COUNT(*) AS TotalOrders,
+    SUM(TotalAmount) AS TotalSales,
+    AVG(TotalAmount) AS AverageOrder,
+    MIN(TotalAmount) AS MinimumOrder,
+    MAX(TotalAmount) AS MaximumOrder
+FROM Orders
+WHERE TotalAmount >= 200;
+-- CASE CHALLENGE 
+-- SQL CASE — 5 More Beginner Tasks
+-- Rules: No JOIN, no subqueries, no nested CASE.
+-- Each task has 2 exercises.
+ 
+-- Task 11 — Customer ID Status
+ 
+-- Exercise 1
+SELECT
+    CustomerID,
+    CustomerName,
+    CASE
+        WHEN CustomerID IN (101, 102) THEN 'Group A'
+        WHEN CustomerID IN (103, 104) THEN 'Group B'
+        WHEN CustomerID = 105 THEN 'Group C'
+    END AS CustomerGroup
+FROM Customer;
+ 
+-- Exercise 2
+SELECT
+    CustomerID,
+    CustomerName,
+    CASE
+        WHEN CustomerID < 103 THEN 'Low ID'
+        WHEN CustomerID BETWEEN 103 AND 104 THEN 'Middle ID'
+        WHEN CustomerID = 105 THEN 'High ID'
+    END AS IDCategory
+FROM Customer;
+ 
+-- Task 12 — Order Amount Level
+ 
+-- Exercise 1
+SELECT
+    OrderID,
+    TotalAmount,
+    CASE
+        WHEN TotalAmount < 200 THEN 'Basic'
+        WHEN TotalAmount BETWEEN 200 AND 300 THEN 'Standard'
+        WHEN TotalAmount > 300 THEN 'Premium'
+    END AS OrderLevel
+FROM Orders;
+ 
+-- Exercise 2
+SELECT
+    OrderID,
+    TotalAmount,
+    CASE
+        WHEN TotalAmount <= 150 THEN 'Low'
+        WHEN TotalAmount BETWEEN 150.01 AND 250 THEN 'Medium'
+        WHEN TotalAmount > 250 THEN 'High'
+    END AS OrderLevel
+FROM Orders;
+ 
+-- Task 13 — Customer Name Group
+ 
+-- Exercise 1
+SELECT
+    CustomerName,
+    CASE
+        WHEN CustomerName LIKE 'J%' THEN 'J Name'
+        WHEN CustomerName LIKE 'S%' THEN 'S Name'
+        ELSE 'Other Name'
+    END AS NameCategory
+FROM Customer;
+ 
+-- Exercise 2
+SELECT
+    CustomerName,
+    CASE
+        WHEN CustomerName LIKE '%n' THEN 'Ends N'
+        WHEN CustomerName LIKE '%h' THEN 'Ends H'
+        ELSE 'Other Ending'
+    END AS NameCategory
+FROM Customer;
+ 
+-- Task 14 — Order Date Category
+ 
+-- Exercise 1
+SELECT
+    OrderID,
+    OrderDate,
+    CASE
+        WHEN OrderDate = '2026-08-01' THEN 'Day 1'
+        WHEN OrderDate BETWEEN '2026-08-02' AND '2026-08-03' THEN 'Days 2-3'
+        WHEN OrderDate BETWEEN '2026-08-04' AND '2026-08-05' THEN 'Days 4-5'
+        WHEN OrderDate >= '2026-08-06' THEN 'Day 6+'
+    END AS DateCategory
+FROM Orders;
+ 
+-- Exercise 2
+SELECT
+    OrderID,
+    OrderDate,
+    CASE
+        WHEN OrderDate < '2026-08-03' THEN 'Early'
+        WHEN OrderDate BETWEEN '2026-08-03' AND '2026-08-05' THEN 'On Schedule'
+        WHEN OrderDate > '2026-08-05' THEN 'Late'
+    END AS Status
+FROM Orders;
+ 
+-- Task 15 — Order Priority
+ 
+-- Exercise 1
+SELECT
+    OrderID,
+    TotalAmount,
+    CASE
+        WHEN TotalAmount >= 350 THEN 'Urgent'
+        WHEN TotalAmount BETWEEN 250 AND 349.99 THEN 'Important'
+        WHEN TotalAmount BETWEEN 200 AND 249.99 THEN 'Normal'
+        WHEN TotalAmount < 200 THEN 'Low'
+    END AS Priority
+FROM Orders;
+ 
+-- Exercise 2
+SELECT
+    OrderID,
+    TotalAmount,
+    CASE
+        WHEN TotalAmount >= 400 THEN 'VIP'
+        WHEN TotalAmount BETWEEN 300 AND 399.99 THEN 'Gold'
+        WHEN TotalAmount BETWEEN 200 AND 299.99 THEN 'Silver'
+        WHEN TotalAmount < 200 THEN 'Bronze'
+    END AS CustomerLevel
+FROM Orders;
+ 
+-- Practice Summary
+-- Task	CASE Concept
+-- 11	CASE with exact numeric values
+-- 12	CASE with numeric ranges
+-- 13	CASE with LIKE
+-- 14	CASE with dates
+-- 15	CASE with multiple amount ranges
