@@ -1,0 +1,150 @@
+-- task 1 
+SELECT
+    Customer.CustomerName,
+    COUNT(Orders.OrderID) AS TotalOrders,
+
+    CASE
+        WHEN COUNT(Orders.OrderID) = 1 THEN 'New'
+        WHEN COUNT(Orders.OrderID) = 2 THEN 'Regular'
+        ELSE 'Frequent'
+    END AS CustomerType
+
+FROM Customer
+INNER JOIN Orders
+    ON Customer.CustomerID = Orders.CustomerID
+
+GROUP BY Customer.CustomerName;
+
+-- task 2
+SELECT
+    Customer.CustomerName,
+    SUM(Orders.TotalAmount) AS TotalSales,
+
+    CASE
+        WHEN SUM(Orders.TotalAmount) < 500 THEN 'Low'
+        WHEN SUM(Orders.TotalAmount) <= 699 THEN 'Medium'
+        ELSE 'High'
+    END AS SalesLevel
+
+FROM Customer
+INNER JOIN Orders
+    ON Customer.CustomerID = Orders.CustomerID
+
+GROUP BY Customer.CustomerName;
+
+-- task 3
+SELECT
+    Customer.CustomerName,
+    AVG(Orders.TotalAmount) AS AverageOrder,
+
+    CASE
+        WHEN AVG(Orders.TotalAmount) < 200 THEN 'Low'
+        WHEN AVG(Orders.TotalAmount) <= 350 THEN 'Standard'
+        ELSE 'Premium'
+    END AS CustomerLevel
+
+FROM Customer
+INNER JOIN Orders
+    ON Customer.CustomerID = Orders.CustomerID
+
+GROUP BY Customer.CustomerName;
+
+-- task 4
+SELECT
+    Customer.CustomerName,
+    MAX(Orders.TotalAmount) AS LargestOrder,
+
+    CASE
+        WHEN MAX(Orders.TotalAmount) < 200 THEN 'Small'
+        WHEN MAX(Orders.TotalAmount) <= 399 THEN 'Medium'
+        ELSE 'Large'
+    END AS OrderSize
+
+FROM Customer
+INNER JOIN Orders
+    ON Customer.CustomerID = Orders.CustomerID
+
+GROUP BY Customer.CustomerName;
+
+-- task 5
+SELECT
+    Customer.CustomerName,
+    MIN(Orders.TotalAmount) AS SmallestOrder,
+
+    CASE
+        WHEN MIN(Orders.TotalAmount) < 150 THEN 'Very Small'
+        WHEN MIN(Orders.TotalAmount) <= 249 THEN 'Small'
+        ELSE 'Large'
+    END AS MinimumOrderType
+
+FROM Customer
+INNER JOIN Orders
+    ON Customer.CustomerID = Orders.CustomerID
+
+GROUP BY Customer.CustomerName;
+
+-- task 6
+SELECT
+    Customer.CustomerName,
+
+    COUNT(Orders.OrderID) AS TotalOrders,
+
+    SUM(Orders.TotalAmount) AS TotalSales,
+
+    CASE
+        WHEN COUNT(Orders.OrderID) = 1 THEN 'New Customer'
+        WHEN COUNT(Orders.OrderID) = 2 THEN 'Regular Customer'
+        ELSE 'Loyal Customer'
+    END AS CustomerStatus
+
+FROM Customer
+INNER JOIN Orders
+    ON Customer.CustomerID = Orders.CustomerID
+
+GROUP BY Customer.CustomerName;
+
+-- task 7
+SELECT
+    Customer.CustomerName,
+
+    MIN(Orders.TotalAmount) AS MinimumOrder,
+
+    MAX(Orders.TotalAmount) AS MaximumOrder,
+
+    CASE
+        WHEN MAX(Orders.TotalAmount) < 300 THEN 'Small Buyer'
+        WHEN MAX(Orders.TotalAmount) <= 399 THEN 'Medium Buyer'
+        ELSE 'Large Buyer'
+    END AS BuyerType
+
+FROM Customer
+INNER JOIN Orders
+    ON Customer.CustomerID = Orders.CustomerID
+
+GROUP BY Customer.CustomerName;
+
+-- task 8 
+SELECT
+    Customer.CustomerName,
+
+    COUNT(Orders.OrderID) AS TotalOrders,
+
+    SUM(Orders.TotalAmount) AS TotalSales,
+
+    AVG(Orders.TotalAmount) AS AverageOrder,
+
+    MIN(Orders.TotalAmount) AS MinimumOrder,
+
+    MAX(Orders.TotalAmount) AS MaximumOrder,
+
+    CASE
+        WHEN SUM(Orders.TotalAmount) < 500 THEN 'Bronze'
+        WHEN SUM(Orders.TotalAmount) <= 699 THEN 'Silver'
+        ELSE 'Gold'
+    END AS CustomerLevel
+
+FROM Customer
+INNER JOIN Orders
+    ON Customer.CustomerID = Orders.CustomerID
+
+GROUP BY Customer.CustomerName;
