@@ -1,0 +1,77 @@
+-- task 1
+SELECT
+    Customer.CustomerName,
+    COUNT(Orders.OrderID) AS TotalOrders
+FROM Customer
+INNER JOIN Orders
+    ON Customer.CustomerID = Orders.CustomerID
+GROUP BY Customer.CustomerName;
+
+-- task 2
+SELECT
+    Customer.CustomerName,
+    SUM(Orders.TotalAmount) AS TotalSales
+FROM Customer
+INNER JOIN Orders
+    ON Customer.CustomerID = Orders.CustomerID
+GROUP BY Customer.CustomerName;
+
+-- task 3
+SELECT
+    Customer.CustomerName,
+    AVG(Orders.TotalAmount) AS AverageOrder
+FROM Customer
+INNER JOIN Orders
+    ON Customer.CustomerID = Orders.CustomerID
+GROUP BY Customer.CustomerName;
+
+-- task 4
+SELECT
+    Customer.CustomerName,
+    MAX(Orders.TotalAmount) AS LargestOrder
+FROM Customer
+INNER JOIN Orders
+    ON Customer.CustomerID = Orders.CustomerID
+GROUP BY Customer.CustomerName;
+
+-- task 5
+SELECT
+    Customer.CustomerName,
+    MIN(Orders.TotalAmount) AS SmallestOrder
+FROM Customer
+INNER JOIN Orders
+    ON Customer.CustomerID = Orders.CustomerID
+GROUP BY Customer.CustomerName;
+
+-- task 6
+SELECT
+    Customer.CustomerName,
+    COUNT(Orders.OrderID) AS TotalOrders,
+    SUM(Orders.TotalAmount) AS TotalSales
+FROM Customer
+INNER JOIN Orders
+    ON Customer.CustomerID = Orders.CustomerID
+GROUP BY Customer.CustomerName;
+
+-- task 7
+SELECT
+    Customer.CustomerName,
+    MIN(Orders.TotalAmount) AS MinimumOrder,
+    MAX(Orders.TotalAmount) AS MaximumOrder
+FROM Customer
+INNER JOIN Orders
+    ON Customer.CustomerID = Orders.CustomerID
+GROUP BY Customer.CustomerName;
+
+-- task 8 
+SELECT
+    Customer.CustomerName,
+    COUNT(Orders.OrderID) AS TotalOrders,
+    SUM(Orders.TotalAmount) AS TotalSales,
+    AVG(Orders.TotalAmount) AS AverageOrder,
+    MIN(Orders.TotalAmount) AS MinimumOrder,
+    MAX(Orders.TotalAmount) AS MaximumOrder
+FROM Customer
+INNER JOIN Orders
+    ON Customer.CustomerID = Orders.CustomerID
+GROUP BY Customer.CustomerName;
