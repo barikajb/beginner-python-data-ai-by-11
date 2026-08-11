@@ -1,0 +1,73 @@
+-- AGGREGATE WITHOUT GROUP BY
+SELECT COUNT(*) AS TotalOrders
+FROM Orders;
+
+-- AGGREGATE WITH GROUP BY
+SELECT
+CustomerID,
+COUNT(*) AS TotalOrders
+FROM Orders
+GROUP BY CustomerID;
+
+-- GROUP BY WITH SUM
+SELECT
+    CustomerID,
+    SUM(TotalAmount) AS TotalSpent
+FROM Orders
+GROUP BY CustomerID;
+
+-- GROUP BY WITH AVG
+SELECT
+    CustomerID,
+    AVG(TotalAmount) AS AverageOrder
+FROM Orders
+GROUP BY CustomerID;
+
+-- GROUP BY WITH MIN
+SELECT
+    CustomerID,
+    MIN(TotalAmount) AS MinimumOrder
+FROM Orders
+GROUP BY CustomerID;
+
+-- GROUP BY WITH MAX
+SELECT
+    CustomerID,
+    MAX(TotalAmount) AS MaximumOrder
+FROM Orders
+GROUP BY CustomerID;
+
+-- MULTIPLE AGGREGATE FUNCTIONS
+SELECT
+    CustomerID,
+    COUNT(*) AS TotalOrders,
+    SUM(TotalAmount) AS TotalSpent,
+    AVG(TotalAmount) AS AverageOrder,
+    MIN(TotalAmount) AS MinimumOrder,
+    MAX(TotalAmount) AS MaximumOrder
+FROM Orders
+GROUP BY CustomerID;
+
+-- USING WHERE 
+SELECT
+    CustomerID,
+    COUNT(*) AS LargeOrders
+FROM Orders
+WHERE TotalAmount >= 200
+GROUP BY CustomerID;
+
+-- USING GROUP BY WITH MULTIPLE COLUMNS 
+SELECT
+    CustomerID,
+    OrderDate,
+    COUNT(*) AS TotalOrders
+FROM Orders
+GROUP BY CustomerID, OrderDate;
+
+-- USING GROUP BY WITH ORDER BY 
+SELECT
+    CustomerID,
+    SUM(TotalAmount) AS TotalSpent
+FROM Orders
+GROUP BY CustomerID
+ORDER BY TotalSpent DESC;
