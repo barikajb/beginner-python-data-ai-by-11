@@ -1,0 +1,105 @@
+-- task 1
+SELECT
+    Customer.CustomerName,
+    Orders.OrderID
+FROM Customer
+INNER JOIN Orders
+    ON Customer.CustomerID = Orders.CustomerID
+GROUP BY
+    Customer.CustomerName,
+    Orders.OrderID;
+    
+-- task 2
+SELECT
+    Customer.CustomerName,
+    Orders.OrderDate
+FROM Customer
+INNER JOIN Orders
+    ON Customer.CustomerID = Orders.CustomerID
+GROUP BY
+    Customer.CustomerName,
+    Orders.OrderDate;
+
+-- task 3
+SELECT
+    Customer.City,
+    Customer.CustomerName,
+    Orders.OrderID
+FROM Customer
+INNER JOIN Orders
+    ON Customer.CustomerID = Orders.CustomerID
+GROUP BY
+    Customer.City,
+    Customer.CustomerName,
+    Orders.OrderID;
+
+-- task 4
+SELECT
+    Customer.State,
+    Customer.CustomerName,
+    Orders.OrderID
+FROM Customer
+INNER JOIN Orders
+    ON Customer.CustomerID = Orders.CustomerID
+GROUP BY
+    Customer.State,
+    Customer.CustomerName,
+    Orders.OrderID;
+    
+-- task 5 
+SELECT
+    Customer.City,
+    Customer.CustomerName,
+    Orders.OrderDate
+FROM Customer
+INNER JOIN Orders
+    ON Customer.CustomerID = Orders.CustomerID
+GROUP BY
+    Customer.City,
+    Customer.CustomerName,
+    Orders.OrderDate;
+    
+-- task 6
+SELECT
+    Customer.CustomerID,
+    Customer.CustomerName,
+    Orders.OrderID
+FROM Customer
+INNER JOIN Orders
+    ON Customer.CustomerID = Orders.CustomerID
+GROUP BY
+    Customer.CustomerID,
+    Customer.CustomerName,
+    Orders.OrderID;
+    
+-- task 7 
+SELECT
+    Customer.CustomerName,
+    Orders.TotalAmount
+FROM Customer
+INNER JOIN Orders
+    ON Customer.CustomerID = Orders.CustomerID
+GROUP BY
+    Customer.CustomerName,
+    Orders.TotalAmount;
+
+-- task 8 
+SELECT
+    Customer.CustomerID,
+    Customer.CustomerName,
+    Customer.City,
+    Customer.State,
+    Orders.OrderID,
+    Orders.OrderDate,
+    Orders.TotalAmount
+FROM Customer
+INNER JOIN Orders
+    ON Customer.CustomerID = Orders.CustomerID
+GROUP BY
+    Customer.CustomerID,
+    Customer.CustomerName,
+    Customer.City,
+    Customer.State,
+    Orders.OrderID,
+    Orders.OrderDate,
+    Orders.TotalAmount;
