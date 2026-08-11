@@ -1,0 +1,180 @@
+-- task 1
+SELECT
+    Customer.CustomerName,
+    Orders.OrderID,
+    Orders.TotalAmount,
+
+    CASE
+        WHEN Orders.TotalAmount < 200 THEN 'Small'
+        WHEN Orders.TotalAmount <= 399 THEN 'Medium'
+        ELSE 'Large'
+    END AS OrderSize
+
+FROM Customer
+INNER JOIN Orders
+    ON Customer.CustomerID = Orders.CustomerID
+
+GROUP BY
+    Customer.CustomerName,
+    Orders.OrderID,
+    Orders.TotalAmount;
+
+-- task 2
+SELECT
+    Customer.CustomerName,
+    Customer.City,
+    Orders.OrderID,
+
+    CASE
+        WHEN Customer.City = 'Chicago' THEN 'Central'
+        WHEN Customer.City = 'Dallas' THEN 'South'
+        WHEN Customer.City = 'New York' THEN 'East'
+        ELSE 'Other'
+    END AS Region
+
+FROM Customer
+INNER JOIN Orders
+    ON Customer.CustomerID = Orders.CustomerID
+
+GROUP BY
+    Customer.CustomerName,
+    Customer.City,
+    Orders.OrderID;
+
+-- task 3
+SELECT
+    Customer.CustomerName,
+    Customer.State,
+    Orders.OrderID,
+
+    CASE
+        WHEN Customer.State = 'IL' THEN 'Illinois'
+        WHEN Customer.State = 'TX' THEN 'Texas'
+        WHEN Customer.State = 'NY' THEN 'New York'
+        ELSE 'Other'
+    END AS StateName
+
+FROM Customer
+INNER JOIN Orders
+    ON Customer.CustomerID = Orders.CustomerID
+
+GROUP BY
+    Customer.CustomerName,
+    Customer.State,
+    Orders.OrderID;
+
+-- task 4
+SELECT
+    Customer.CustomerName,
+    Orders.OrderID,
+    Orders.OrderDate,
+
+    CASE
+        WHEN MONTH(Orders.OrderDate) = 1 THEN 'January Order'
+        WHEN MONTH(Orders.OrderDate) = 2 THEN 'February Order'
+        ELSE 'Other Month'
+    END AS OrderMonth
+
+FROM Customer
+INNER JOIN Orders
+    ON Customer.CustomerID = Orders.CustomerID
+
+GROUP BY
+    Customer.CustomerName,
+    Orders.OrderID,
+    Orders.OrderDate;
+    
+-- task 5
+SELECT
+    Customer.CustomerName,
+    Orders.OrderID,
+
+    CASE
+        WHEN Orders.OrderID < 1004 THEN 'Early Order'
+        WHEN Orders.OrderID <= 1006 THEN 'Middle Order'
+        ELSE 'Recent Order'
+    END AS OrderPeriod
+
+FROM Customer
+INNER JOIN Orders
+    ON Customer.CustomerID = Orders.CustomerID
+
+GROUP BY
+    Customer.CustomerName,
+    Orders.OrderID;
+
+-- task 6
+SELECT
+    Customer.CustomerName,
+    Customer.City,
+    Orders.OrderID,
+
+    CASE
+        WHEN Customer.City IN ('Chicago', 'Dallas', 'New York')
+            THEN 'Major City'
+        ELSE 'Other City'
+    END AS CityType
+
+FROM Customer
+INNER JOIN Orders
+    ON Customer.CustomerID = Orders.CustomerID
+
+GROUP BY
+    Customer.CustomerName,
+    Customer.City,
+    Orders.OrderID;
+    
+-- task 7 
+SELECT
+    Customer.CustomerName,
+    Orders.OrderID,
+    Orders.TotalAmount,
+
+    CASE
+        WHEN Orders.TotalAmount < 150 THEN 'Low'
+        WHEN Orders.TotalAmount <= 299 THEN 'Medium'
+        ELSE 'High'
+    END AS SpendingLevel
+
+FROM Customer
+INNER JOIN Orders
+    ON Customer.CustomerID = Orders.CustomerID
+
+GROUP BY
+    Customer.CustomerName,
+    Orders.OrderID,
+    Orders.TotalAmount;
+    
+-- task 8 
+SELECT
+    Customer.CustomerID,
+    Customer.CustomerName,
+    Customer.City,
+    Orders.OrderID,
+    Orders.OrderDate,
+    Orders.TotalAmount,
+
+    CASE
+        WHEN Orders.TotalAmount < 200 THEN 'Small'
+        WHEN Orders.TotalAmount <= 399 THEN 'Medium'
+        ELSE 'Large'
+    END AS OrderSize,
+
+    CASE
+        WHEN Customer.City = 'Chicago' THEN 'Central'
+        WHEN Customer.City = 'Dallas' THEN 'South'
+        WHEN Customer.City = 'New York' THEN 'East'
+        ELSE 'Other'
+    END AS Region
+
+FROM Customer
+INNER JOIN Orders
+    ON Customer.CustomerID = Orders.CustomerID
+
+GROUP BY
+    Customer.CustomerID,
+    Customer.CustomerName,
+    Customer.City,
+    Orders.OrderID,
+    Orders.OrderDate,
+    Orders.TotalAmount;
