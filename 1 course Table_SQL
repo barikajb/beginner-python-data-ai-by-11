@@ -1,0 +1,37 @@
+-- 1. Display all courses
+SELECT *
+FROM Course;
+
+-- 2. Display only course names
+SELECT CourseName
+FROM Course;
+
+-- 3. Find Computer Science
+SELECT *
+FROM Course
+WHERE CourseName = 'Computer Science';
+
+-- 4. Find courses with CategoryID 5
+SELECT *
+FROM Course 
+where CategoryID = 5;
+
+-- 5. Find courses beginning with C
+SELECT *
+FROM Course
+WHERE CourseName LIKE 'C%' ;
+
+-- 6. Sort courses alphabetically
+SELECT *
+FROM Course
+ORDER BY CourseName;
+
+-- 7. Count all courses
+SELECT COUNT(*) AS TotalCourses
+From Course;
+
+-- 8. Count courses in each category
+SELECT CategoryID,
+COUNT(*) AS TotalCourses
+FROM Course
+GROUP BY CategoryID;
